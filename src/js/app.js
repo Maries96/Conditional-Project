@@ -29,18 +29,38 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
+  let instagram = "";
+  let twitter = "";
+  let github = "";
+  let linkedin = "";
+
+  if (variables.instagram) {
+    instagram = `<li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>`;
+  }
+  if (variables.twitter) {
+    twitter = `<li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>`;
+  }
+  if (variables.github) {
+    github = `<li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>`;
+  }
+
+  if (variables.linkedin) {
+    `<li><a href="https://linkedin.com/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>`;
+  }
+
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${variables.name || "No Name"}
+          ${variables.lastname || "No last Name"}</h1>
+          <h2>${variables.role || ""} </h2>
+          <h3>${variables.city || ""} ${variables.country || ""}</h3>
+          <ul class="position-left">
+          ${twitter}
+          <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
+            ${linkedin}
+            ${instagram}
           </ul>
         </div>
     `;
